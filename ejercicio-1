@@ -1,0 +1,95 @@
+-- ejercicio a--
+SELECT *
+FROM movies
+WHERE YEAR(release_date) >=2000;
+
+
+-- ejercicio b--
+SELECT *
+FROM movies
+WHERE YEAR(release_date) BETWEEN 2000 AND 2010;
+
+-- ejercicio c --
+SELECT *
+FROM actors
+WHERE first_name != "Mark";
+
+-- ejercicio d --
+SELECT *
+FROM actors
+WHERE first_name = "Mark" OR first_name = "Sam";
+
+-- ejercicio e --
+SELECT *
+FROM movies
+WHERE YEAR(release_date) NOT BETWEEN 2000 AND 2009 AND id > 10;
+
+-- ejercicio f --
+SELECT *
+FROM actors
+ORDER BY  first_name, last_name;
+
+-- ejercicio g --
+SELECT * FROM movies
+ORDER BY release_date;
+
+-- ejercicio h -- 
+SELECT * FROM movies
+WHERE YEAR(release_date) >= 2000
+ORDER BY title;
+
+-- ejercicio i -- 
+SELECT *
+FROM movies
+WHERE YEAR(release_date) >= 2000
+LIMIT 3
+OFFSET 6;
+
+-- ejercicio j --
+SELECT * FROM movies
+WHERE release_date BETWEEN "1999-10-01" AND "2004-12-31"
+ORDER BY release_date DESC;
+
+-- ejercicio k --
+SELECT * FROM actors
+WHERE first_name >= "he" AND first_name <= "to"
+ORDER BY first_name;
+
+-- ejercicio l --
+SELECT * FROM movies
+WHERE title LIKE "t%" ORDER BY title ;
+
+-- ejercicio m --
+SELECT * FROM movies
+WHERE YEAR(release_date) = "1999" OR MONTH(release_date) = 10
+ORDER BY release_date, title DESC;
+
+-- ejercicio n --
+SELECT * FROM actors
+WHERE (last_name LIKE "%de%" OR last_name LIKE "%ll%" ) AND first_name LIKE "%a%";
+
+-- ejercicio o --
+SELECT * FROM movies m
+WHERE (title LIKE "%toy story%" OR title LIKE "%harry potter%") AND m.length = 120;  
+
+-- ejercicio p --
+SELECT * FROM movies m
+WHERE rating IN (8.3,9.1,9.0)
+ORDER BY rating; 
+
+-- ejercicio q --
+SELECT * FROM movies m
+WHERE length not IN (120,150)
+ORDER BY LENGTH, title; 
+
+-- ejercicio r --
+SELECT id id_genero, NAME nombre_genero FROM genres
+ORDER BY nombre_genero;
+
+-- ejercicio s --
+SELECT * FROM movies, genres
+ORDER BY movies.title;
+
+-- ejercicio t --
+SELECT * FROM actors,movies
+ORDER BY title,first_name;
