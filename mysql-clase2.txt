@@ -1,0 +1,63 @@
+-- ejercicio 1 --
+SELECT genres.name, movies.title
+FROM genres
+INNER JOIN movies ON movies.genre_id = genres.id
+ORDER BY genres.name DESC;
+
+-- ejercicio 2 --
+SELECT title, name, first_name,last_name
+FROM movies m
+INNER JOIN genres g ON g.id = m.genre_id
+INNER JOIN actor_movie am ON am.movie_id = m.id
+INNER JOIN actors a ON a.id = am.actor_id;
+
+-- ejercicio 3 --
+SELECT first_name,title
+FROM movies m
+INNER JOIN actor_movie am ON am.movie_id = m.id
+INNER JOIN actors a ON a.id = am.actor_id
+ORDER BY first_name asc;
+
+-- ejercicio 4 --
+SELECT title,NAME 
+FROM movies m
+LEFT JOIN genres g ON m.genre_id = g.id
+UNION 
+SELECT title,name
+FROM movies m
+right JOIN genres g ON m.genre_id = g.id
+ORDER BY title,name;
+
+-- ejercicio 5 --
+SELECT e.title, se.NUMBER, s.title, g.NAME, COUNT(*) 'Cantidad de actores'
+FROM series s
+INNER JOIN seasons se ON se.serie_id = s.id
+INNER JOIN episodes e ON e.season_id = se.id
+INNER JOIN genres g ON s.genre_id = g.id
+INNER JOIN actor_episode ae ON e.id = ae.episode_id
+GROUP BY 1,2,3,4;
+
+-- ejercicio 6 --
+SELECT NAME, AVG(rating)
+FROM genres g
+INNER JOIN movies m ON g.id = m.genre_id
+WHERE rating > 5
+GROUP BY 1;
+
+-- ejercicio 7 --
+SELECT s.title, COUNT(e.id)
+FROM series s
+INNER JOIN seasons se ON s.id = se.serie_id
+INNER JOIN episodes e ON se.id = e.season_id
+WHERE YEAR(s.release_date) = 2016;
+GROUP BY 1;
+
+-- ejercicio 8--
+
+SELECT s.title, COUNT(e.id)
+FROM series s
+INNER JOIN seasons se ON s.id = se.serie_id
+INNER JOIN episodes e ON se.id = e.season_id
+WHERE YEAR(s.release_date) = YEAR(now());
+GROUP BY 1;
+
